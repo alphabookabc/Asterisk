@@ -1,1 +1,25 @@
+# General support
+  cd /etc/asterisk
+  
+  asterisk -cvvv
+  sip show peers
+  sip reload
+  
+  
+  
+# DHCP
+  
+# NTP
+  ntpdate pool.ntp.org
+  date
+  
 
+# sip.conf
+
+
+# 
+
+
+
+  
+  
