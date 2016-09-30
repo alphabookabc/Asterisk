@@ -1,8 +1,46 @@
 # asterisk.org
 # Certified Asterisk 13 - LTS
-# Installation
-  wget http://sssssssss
-  install dependency
-  to be continued
+# Install CentOS basically the default of basic server is sufficient
+# Separate the /var to its own partition
+yum update -y && reboot
+yum install ntp -y && ntpdate pool.ntp.org && chkconfig ntpd on && service ntpd start
 
+# Dependencies
+yum install gcc gcc-c++ make wget subversion libxml2-devel ncureses-devel openssl-devel sqlite-devel libuuid-devel vim-enhanced
+
+# Install DAHDI (1st) -- Digium Asterisk Hardware Device Interface
+uname -a
+yum install kernel-devel
+# Download the DAHDI
+cd tools
+./configure --libdir=/usr/lib64
+make
+make install
+cd ../linux
+make
+make install
+cd ..
+make config
+
+# Install LibPRI (2th) -- Library to support ISDN (PRI and BRI)
+make
+make install libdir=/usr/lib64
+
+# Install Asterisk (3th)
+./configure --libdir=/usr/lib64
+make
+make install
+sudo chown -R asteriskpbx:asteriskpbx /var/lib/asterisk
+sudo chown -R asteriskpbx:asteriskpbx /var/spool/asterisk
+sudo chown -R asteriskpbx:asteriskpbx /var/log/asterisk
+sudo chown -R asteriskpbx:asteriskpbx /var/run/asterisk
+vi /etc/udev/rules.d/dahdi.rules
+# SUBSYSTEM=="dahdi", OWNER="asteriskpbx", GROUP="asteriskpbx", MODE="0660"
+make config
+
+mkdir -p /etc/asterisk
+chown asteriskpbx:asteriskpbx /etc/asterisk
+
+# Run below command in the Asterisk source directory
+make samples
 
