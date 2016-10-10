@@ -19,7 +19,7 @@ make config
 
 # Install LibPRI (2th) -- Library to support ISDN (PRI and BRI)
 make
-make install
+make install libdir=/usr/lib64
 
 # Install Asterisk (3th)
 ./configure --libdir=/usr/lib64
