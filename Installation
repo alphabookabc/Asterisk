@@ -12,11 +12,12 @@ yum install gcc gcc-c++ make wget subversion libxml2-devel ncureses-devel openss
 uname -a
 yum install kernel-devel
 # Download the DAHDI
-cd tools
-./configure --libdir=/usr/lib64
+cd linux
 make
 make install
-cd ../linux
+cd ..
+cd tools
+./configure --libdir=/usr/lib64
 make
 make install
 cd ..
