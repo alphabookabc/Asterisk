@@ -10,46 +10,32 @@ yum install ntp -y && ntpdate pool.ntp.org && chkconfig ntpd on && service ntpd 
 yum install gcc gcc-c++ make wget subversion libxml2-devel newt-devel ncurses-devel openssl-devel sqlite-devel libuuid-devel vim-enhanced
 yum install jansson-devel
 yum install kernel-devel
-# Install DAHDI (1st) -- Digium Asterisk Hardware Device Interface
-# Download the DAHDI
-make
-make install
-make config
 
-cd linux
+# Install DAHDI (1st) -- Digium Asterisk Hardware Device Interface
+# Download the DAHDI (2.11.1 is in issue with CentOS 7, we may choose 2.10.2 as workaround)
 make
 make install
-cd ..
-cd tools
-./configure --libdir=/usr/lib64
-make
-make install
-cd ..
 make config
 
 # Install LibPRI (2th) -- Library to support ISDN (PRI and BRI)
 make
 make install
 
-make
-make install libdir=/usr/lib64
-
 # Install Asterisk (3th)
-./configure --libdir=/usr/lib64
+./configure
 make menuselect
 make
 make install
+
 sudo chown -R asteriskpbx:asteriskpbx /var/lib/asterisk
 sudo chown -R asteriskpbx:asteriskpbx /var/spool/asterisk
 sudo chown -R asteriskpbx:asteriskpbx /var/log/asterisk
 sudo chown -R asteriskpbx:asteriskpbx /var/run/asterisk
 vi /etc/udev/rules.d/dahdi.rules
 SUBSYSTEM=="dahdi", OWNER="asteriskpbx", GROUP="asteriskpbx", MODE="0660"
-
 mkdir -p /etc/asterisk
 chown asteriskpbx:asteriskpbx /etc/asterisk
 
 # Run below command in the Asterisk source directory
 make samples
 make config
-
