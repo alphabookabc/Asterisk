@@ -22,7 +22,7 @@ make
 make install
 
 # Install Asterisk (3th)
-./configure
+./configure --libdir=/usr/lib64
 make menuselect
 make
 make install
