@@ -1,5 +1,15 @@
 # Configuration
 
+# Start dahdi
+systemctl status dahdi
+systemctl start dahdi
+systemctl enable dahdi
+
+# Start asterisk
+systemctl status asterisk
+systemctl start asterisk
+systemctl enable asterisk
+
 # Start asterisk and specify the asterisk.conf location
 /usr/sbin/asterisk -C /etc/asterisk/asterisk.conf
 
