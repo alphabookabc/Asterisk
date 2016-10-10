@@ -10,6 +10,8 @@ systemctl status asterisk
 systemctl start asterisk
 systemctl enable asterisk
 
+asterisk -rvvv
+
 # Start asterisk and specify the asterisk.conf location
 /usr/sbin/asterisk -C /etc/asterisk/asterisk.conf
 
