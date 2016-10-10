@@ -6,8 +6,8 @@ yum update -y && reboot
 yum install ntp -y && ntpdate pool.ntp.org && chkconfig ntpd on && service ntpd start
 
 # Dependencies
-yum install gcc gcc-c++ make wget subversion libxml2-devel ncureses-devel openssl-devel sqlite-devel libuuid-devel vim-enhanced
-
+yum install gcc gcc-c++ make wget subversion libxml2-devel ncurses-devel openssl-devel sqlite-devel libuuid-devel vim-enhanced
+yum install jansson-devel
 # Install DAHDI (1st) -- Digium Asterisk Hardware Device Interface
 uname -a
 yum install kernel-devel
