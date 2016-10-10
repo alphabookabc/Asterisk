@@ -7,7 +7,7 @@ yum update -y && reboot
 yum install ntp -y && ntpdate pool.ntp.org && chkconfig ntpd on && service ntpd start
 
 # Dependencies
-yum install gcc gcc-c++ make wget subversion libxml2-devel newt-devel ncurses-devel openssl-devel sqlite-devel libuuid-devel vim-enhanced
+yum install gcc gcc-c++ make wget subversion libxml2-devel ncurses-devel openssl-devel sqlite-devel libuuid-devel vim-enhanced
 yum install jansson-devel
 yum install kernel-devel
 
