@@ -1,0 +1,18 @@
+# Configuration
+
+# Start asterisk and specify the asterisk.conf location
+/usr/sbin/asterisk -C /etc/asterisk/asterisk.conf
+
+# /etc/asterisk/modules.conf
+# autoload=yes
+# 
+
+# Channel configuration
+sip.conf
+iax.conf
+
+# Dialplan (the heart of Asterisk system)
+extensions.conf
+
+# sip.conf example
+
