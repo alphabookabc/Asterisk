@@ -13,7 +13,7 @@ type=user
 pin=123456
 wait_marked=yes
 end_marked=yes
-music_on_hold_wehn_empty=yes
+music_on_hold_when_empty=yes
 announce_user_count=yes
 
 [default_bridge]
@@ -31,3 +31,7 @@ exten=>8888,3,ConfBridge(1,default_bridge,default_user)
 exten=>8889,1,Progress()
 exten=>8889,2,Wait(1)
 exten=>8889,3,ConfBridge(1,default_bridge,admin_user)
+
+# confbridge module reload
+asterisk -rvvv
+module load app_confbridge.so
