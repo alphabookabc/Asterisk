@@ -1,0 +1,33 @@
+# /etc/asterisk/confbridge.conf
+[general]
+
+[admin_user]
+type=user
+pin=666666
+marked=yes
+admin=yes
+music_on_hold_when_empty=yes
+
+[default_user]
+type=user
+pin=123456
+wait_marked=yes
+end_marked=yes
+music_on_hold_wehn_empty=yes
+announce_user_count=yes
+
+[default_bridge]
+type=bridge
+max_members=10
+
+# /etc/asterisk/extensioins.conf
+
+# Conference guest
+exten=>8888,1,Progress()
+exten=>8888,2,Wait(1)
+exten=>8888,3,ConfBridge(1,default_bridge,default_user)
+
+# Conference admin
+exten=>8889,1,Progress()
+exten=>8889,2,Wait(1)
+exten=>8889,3,ConfBridge(1,default_bridge,admin_user)
