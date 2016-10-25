@@ -1,0 +1,35 @@
+# iax.conf on Beijing Asterisk
+[general]
+register => shanghai:123456@192.168.200.51
+
+[beijing]
+type=friend
+host=dynamic
+secrect=123456
+context=beijing-shanghai
+peercontext=beijing-shanghai
+qualify=yes
+
+# iax.conf on Shanghai Asterisk
+[general]
+register => beijing:123456@192.168.200.50
+
+[shanghai]
+type=friend
+host=dynamic
+secrect=123456
+context=beijing-shanghai
+peercontext=beijing-shanghai
+qualify=yes
+
+# extensions.conf on Beijing Asterisk
+[beijing-shanghai]
+exten => _6XXX,1,Dial(IAX2/beijing/${EXTEN}@beijing-shanghai)
+exten => _6XXX,n,Hangup()
+exten => i,1,Congestion
+
+# extensions.conf on Shanghai Asterisk
+[beijing-shanghai]
+exten => _8XXX,1,Dial(IAX2/shanghai/${EXTEN}@beijing-shanghai)
+exten => _8XXX,n,Hangup()
+exten => i,1,Congestion
